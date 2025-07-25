@@ -1,0 +1,19 @@
+.welcome-message-overlay {
+    position: fixed;
+    bottom: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 500;
+    border-radius: 16px;
+    user-select: none;
+    white-space: nowrap;                /* Позволяем переносы */
+    text-align: center;
+    font-family: "Segoe UI", sans-serif;
+    font-size: clamp(16px, 5vw, 55px);  /* Более безопасный адаптивный размер */
+    color: white;
+    padding: 1rem 2rem;
+    max-width: 90vw;
+    line-height: 1.4;
+    word-break: break-word;
+    z-index: 1000;
+}

@@ -1,0 +1,21 @@
+.sub-text {
+    white-space: nowrap;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    bottom: 3vh;
+    font-size: clamp(6px, 1vw, 12px);;
+    color: #bbb; /* светло-серый */
+    font-style: italic;
+}
+
+.developer-text{
+    white-space: nowrap;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    bottom: 0.5vh;
+    font-size: clamp(7px, 1vw, 12px);;
+    color: white;
+    font-family: "Segoe UI", sans-serif
+}
