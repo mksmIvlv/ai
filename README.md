@@ -28,7 +28,6 @@
 
 ## 🐳 Сборка и запуск (Docker Compose)
 
-```bash```
 git clone https://github.com/yourname/ai.git
 cd ai
 docker-compose up --build
