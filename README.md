@@ -28,20 +28,24 @@
 
 ## 🐳 Сборка и запуск (Docker Compose)
 
+``` bash
 git clone https://github.com/yourname/ai.git
 cd ai
-docker-compose up --build
+docker-compose up --build 
+```
 
 ## 📁 Структура проекта
 
+```
 ├── backend/            # .NET Core API
 │   └── ...             
 ├── frontend/           # Vite + Node.js frontend
 │   └── ...
 ├── docker-compose.yml  # Описание сервисов
 └── README.md           # Документация
+```
 
 ## 📬 Контакты
 
-Автор: mxmIvl
+Автор: mxmIvl  
 GitHub: @mksmIvlv
