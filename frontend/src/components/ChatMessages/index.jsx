@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import './styles/main.css';
+import ChatMessagesEnum from "../../enums/chatMessages/chatMessagesEnum.js";
 
 export default function ChatMessages({ messages, isTyping, chatRef }) {
     return (
@@ -17,7 +18,7 @@ export default function ChatMessages({ messages, isTyping, chatRef }) {
 
             {isTyping && (
                 <div className="loading-indicator">
-                    <em>Печатает...</em>
+                    <em>{ChatMessagesEnum.loadingIndicatorText}</em>
                 </div>
             )}
         </div>

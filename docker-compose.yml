@@ -1,0 +1,23 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    working_dir: /app
+    command: ["npm", "run", "dev", "--", "--host", "--mode", "docker"]
+
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5156:5156"
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:5156
+    working_dir: /app

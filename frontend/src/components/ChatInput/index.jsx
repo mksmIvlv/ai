@@ -3,6 +3,7 @@ import './styles/main.css';
 import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
 import Tooltip from '@mui/material/Tooltip';
+import ChatInputEnum from '../../enums/chatInput/chatInputEnum';
 
 export default function ChatInput({ input, setInput, sendMessage }) {
     return (
@@ -17,9 +18,9 @@ export default function ChatInput({ input, setInput, sendMessage }) {
                         sendMessage();
                     }
                 }}
-                placeholder="Введите запрос..."
+                placeholder={ChatInputEnum.placeholderText}
             />
-            <Tooltip title="Отправить">
+            <Tooltip title={ChatInputEnum.tooltipTitle}>
                 <IconButton color="primary" aria-label="send" onClick={sendMessage}>
                     <SendIcon />
                 </IconButton>

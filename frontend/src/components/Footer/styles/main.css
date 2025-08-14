@@ -1,4 +1,4 @@
-.sub-text {
+.information-text {
     white-space: nowrap;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -9,7 +9,7 @@
     font-style: italic;
 }
 
-.developer-text{
+.developer-text {
     white-space: nowrap;
     left: 50%;
     transform: translate(-50%, -50%);

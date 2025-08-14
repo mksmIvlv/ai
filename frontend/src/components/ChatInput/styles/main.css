@@ -40,15 +40,8 @@
     text-align: center;
 }
 
-
 .input-area button:hover {
     filter: brightness(70%);;
-}
-
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 /* Стартовое положение (центр экрана) */
@@ -82,5 +75,3 @@
         max-width: 90%;
     }
 }
-
-

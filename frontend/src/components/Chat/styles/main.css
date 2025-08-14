@@ -1,14 +1,15 @@
 /* Обёртка чата */
 .chat-wrapper {
-    max-width: 50%;                  /* Максимальная ширина контейнера — половина ширины родителя */
-    margin: 40px auto;               /* Отступ сверху и снизу 40px, по центру по горизонтали */
-    display: flex;                   /* Включаем flexbox для внутреннего расположения элементов */
-    flex-direction: column;          /* Располагаем дочерние элементы вертикально */
-    gap: 16px;                       /* Вертикальный промежуток между дочерними элементами */
-    border-radius: 12px;             /* Скругление углов блока */
-    overflow: hidden;                /* Скрывает всё, что выходит за пределы блока */
-    transition: height 1s ease;      /* Плавное изменение высоты при её изменении в течение 1 секунды */
-    height: 0;                       /* По умолчанию высота 0 — контейнер скрыт */
+    max-width: 50%;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: height 1s ease;
+    height: 0;
+    position: relative;
 }
 @media (max-width: 1024px) {
     .chat-wrapper {
@@ -18,41 +19,67 @@
 
 /* Расширение обёртки чата */
 .chat-wrapper.expanded {
-    height: 87vh;                   /* При расширении занимает 87% высоты окна браузера */
-    padding-bottom: 100px;          /* Внутренний отступ снизу, чтобы не перекрывать контентом фиксированный блок ввода */
-    box-sizing: border-box;         /* Включает учёт padding и border в общую ширину/высоту элемента */
+    height: 87vh;
+    padding-bottom: 100px;
+    box-sizing: border-box;
 }
 
 /* Индикатор "Печатает..." */
 .loading-indicator {
-    align-self: center;             /* Выравнивает элемент по центру внутри flex-контейнера */
-    text-align: center;             /* Текст внутри блока выравнивается по центру */
-    color: #a0a0a0;                 /* Цвет текста — серый */
-    font-style: italic;             /* Курсивное начертание текста */
-    padding: 16px 0;                /* Вертикальные отступы сверху и снизу по 16px */
-    animation: blink 1s infinite;   /* Анимация мигания с периодом 1 секунда, повторяется бесконечно */
+    align-self: center;
+    text-align: center;
+    color: #a0a0a0;
+    font-style: italic;
+    padding: 16px 0;
+    animation: blink 1s infinite;
 }
 
 /* Контейнер чата */
 .chat-container {
-    display: flex;                  /* Включаем flexbox для контейнера чата */
-    flex-direction: column;         /* Элементы располагаются вертикально друг под другом */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Блок с сообщениями */
 .chat-messages-container {
-    flex-grow: 1;                  /* Занимает всё доступное пространство внутри flex-контейнера */
-    background-color: #1e1e1e;     /* Темный фон для блока сообщений */
-    border-radius: 16px;           /* Скругление углов блока */
-    padding: 24px;                 /* Внутренние отступы со всех сторон */
-    overflow-y: auto;              /* Вертикальная прокрутка, если контента больше, чем высота блока */
-    display: flex;                 /* Flexbox для расположения сообщений */
-    flex-direction: column;        /* Располагает сообщения вертикально */
-    gap: 12px;                     /* Вертикальный отступ между сообщениями */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Тень для объёма */
+    flex-grow: 1;
+    background-color: #1e1e1e;
+    border-radius: 16px;
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
     /* Стили скроллбара для Firefox */
-    scrollbar-width: thin;            /* Тонкий скроллбар */
-    scrollbar-color: #00bfff #1e1e1e; /* Цвет бегунка и трека */
-    filter: brightness(90%);          /* Немного затемняет содержимое */
+    scrollbar-width: thin;
+    scrollbar-color: #00bfff #1e1e1e;
+    filter: brightness(90%);
+}
+
+
+/* Кнопка прокрутки вниз */
+.scroll-button {
+    position: fixed;
+    bottom: 20vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #4a90e2, #007aff);
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    opacity: 0.75;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.scroll-button:hover {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.1);
 }

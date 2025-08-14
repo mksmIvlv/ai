@@ -4,7 +4,8 @@ import ChatMessages from '../ChatMessages';
 import ChatInput from '../ChatInput';
 import './styles/main.css';
 import './styles/animations.css';
-import WelcomeMessage from "../WelcomeMessage";
+import WelcomeMessage from '../WelcomeMessage';
+import ChatEnum from '../../enums/chat/chatEnum';
 
 export default function Chat() {
     const { messages, isTyping, chatRef, input, setInput, sendMessage, isStartScreen } = useChat();
@@ -12,7 +13,7 @@ export default function Chat() {
     return (
         <>
             {isStartScreen && (
-                <WelcomeMessage text='Привет! С чего сегодня начнем?' speed={100} />
+                <WelcomeMessage text={ChatEnum.welcomeMessage} speed={100} />
             )}
             <div className={`chat-wrapper ${isStartScreen ? '' : 'expanded'}`}>
                 <div className="chat-messages-container" ref={chatRef}>

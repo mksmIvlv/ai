@@ -1,5 +1,3 @@
-
-
 .chat-messages-container::-webkit-scrollbar {
     width: 8px;
 }
@@ -26,9 +24,7 @@
     animation: fadeIn 0.3s ease;
     color: #eaeaea;
     word-break: break-word;
-
-    /* Добавляем отступ сверху и снизу */
-    margin: 8px 0;   /* 8px сверху и снизу, 0 — слева и справа */
+    margin: 8px 0;
 }
 .message.user {
     background-color: #3a3a3a;
