@@ -1,3 +1,4 @@
+/* Информационный текст */
 .information-text {
     white-space: nowrap;
     left: 50%;
@@ -9,6 +10,7 @@
     font-style: italic;
 }
 
+/* Текст разработчика */
 .developer-text {
     white-space: nowrap;
     left: 50%;

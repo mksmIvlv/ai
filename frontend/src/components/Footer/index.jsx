@@ -1,5 +1,5 @@
-import React from "react";
-import "./styles/main.css";
+import React from 'react';
+import './styles/main.css';
 import FooterEnum from '../../enums/footer/footerEnum.js';
 
 export default function Footer() {

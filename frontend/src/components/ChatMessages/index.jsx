@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import './styles/main.css';
-import ChatMessagesEnum from "../../enums/chatMessages/chatMessagesEnum.js";
+import ChatMessagesEnum from '../../enums/chatMessages/chatMessagesEnum.js';
 
 export default function ChatMessages({ messages, isTyping, chatRef }) {
     return (

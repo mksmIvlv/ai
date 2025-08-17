@@ -6,19 +6,37 @@ export function useChat() {
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const [isStartScreen, setStartScreen] = useState(true);
-    const [awaitingSendMessage, setAwaitingSendMessage] = useState(null);
-
 
     const chatRef = useRef(null);
     const lastSenderRef = useRef(null);
 
+    // Отправка сообщений
     const sendMessage = () => {
         const trimmed = input.trim();
         if (!trimmed) return;
 
+        // сразу показываем сообщение юзера
+        setMessages(prev => [...prev, { text: trimmed, sender: 'user' }]);
+        lastSenderRef.current = 'user';
+
+        // очищаем инпут
         setInput('');
-        setStartScreen(false); // Показываем окно
-        setAwaitingSendMessage({ text: trimmed }); // Ждём раскрытия
+        setIsTyping(true);
+
+        // запрос на бэкенд
+        sendTextMessage(trimmed)
+            .then(data => {
+                setMessages(prev => [...prev, { text: data.text || 'Нет ответа', sender: 'bot' }]);
+                lastSenderRef.current = 'bot';
+            })
+            .catch(err => {
+                console.error('Ошибка запроса:', err);
+                setMessages(prev => [...prev, { text: 'Ошибка: не удалось получить ответ', sender: 'bot' }]);
+                lastSenderRef.current = 'bot';
+            })
+            .finally(() => {
+                setIsTyping(false);
+            });
     };
 
     // Авто-отключение стартового экрана при наличии сообщений
@@ -26,6 +44,7 @@ export function useChat() {
         setStartScreen(messages.length === 0);
     }, [messages]);
 
+    // Прокрутка вниз при новом сообщении от пользователя
     useEffect(() => {
         if (!chatRef.current) return;
 
@@ -36,47 +55,6 @@ export function useChat() {
             });
         }
     }, [messages]);
-
-
-    // Отправка отложенного сообщения после раскрытия контейнера
-    useEffect(() => {
-        if (!chatRef.current || !awaitingSendMessage) return;
-
-        const container = chatRef.current;
-
-        const observer = new ResizeObserver(entries => {
-            const height = entries[0].contentRect.height;
-
-            if (height >= 500) {
-                observer.disconnect();
-
-                const userMessage = awaitingSendMessage.text;
-                setAwaitingSendMessage(null);
-
-                setMessages(prev => [...prev, { text: userMessage, sender: 'user' }]);
-                lastSenderRef.current = 'user';
-                setIsTyping(true);
-
-                sendTextMessage(userMessage)
-                    .then(data => {
-                        setMessages(prev => [...prev, { text: data.text || 'Нет ответа', sender: 'bot' }]);
-                        lastSenderRef.current = 'bot';
-                    })
-                    .catch(err => {
-                        console.error('Ошибка запроса:', err);
-                        setMessages(prev => [...prev, { text: 'Ошибка: не удалось получить ответ', sender: 'bot' }]);
-                        lastSenderRef.current = 'bot';
-                    })
-                    .finally(() => {
-                        setIsTyping(false);
-                    });
-            }
-        });
-
-        observer.observe(container);
-
-        return () => observer.disconnect();
-    }, [awaitingSendMessage]);
 
     return {
         messages,

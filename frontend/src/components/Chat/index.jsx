@@ -1,26 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useChat } from './hooks/useChat';
 import ChatMessages from '../ChatMessages';
 import ChatInput from '../ChatInput';
 import './styles/main.css';
-import './styles/animations.css';
 import WelcomeMessage from '../WelcomeMessage';
-import ChatEnum from '../../enums/chat/chatEnum';
+import {getRandomWelcomeMessage} from '../WelcomeMessage/scripts/getRandomWelcomeMessage.js';
 
 export default function Chat() {
     const { messages, isTyping, chatRef, input, setInput, sendMessage, isStartScreen } = useChat();
+    const [welcomeMessage] = useState(getRandomWelcomeMessage);
 
     return (
         <>
             {isStartScreen && (
-                <WelcomeMessage text={ChatEnum.welcomeMessage} speed={100} />
+                <WelcomeMessage text={welcomeMessage} speed={100} />
             )}
-            <div className={`chat-wrapper ${isStartScreen ? '' : 'expanded'}`}>
+            <div className={`chat-wrapper`}>
                 <div className="chat-messages-container" ref={chatRef}>
                     <ChatMessages messages={messages} isTyping={isTyping} />
                 </div>
             </div>
-            <div className={`chat-input-container ${isStartScreen ? '' : 'expanded'}`}>
+            <div className={`chat-input-container`}>
                 <ChatInput input={input} setInput={setInput} sendMessage={sendMessage} />
             </div>
         </>

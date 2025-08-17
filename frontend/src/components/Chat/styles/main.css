@@ -5,23 +5,18 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    border-radius: 12px;
     overflow: hidden;
     transition: height 1s ease;
-    height: 0;
     position: relative;
+    height: 85vh;
+    padding-bottom: 100px;
+    box-sizing: border-box;
+    border-radius: 16px;
 }
 @media (max-width: 1024px) {
     .chat-wrapper {
         max-width: 90%;
     }
-}
-
-/* Расширение обёртки чата */
-.chat-wrapper.expanded {
-    height: 87vh;
-    padding-bottom: 100px;
-    box-sizing: border-box;
 }
 
 /* Индикатор "Печатает..." */
@@ -34,52 +29,27 @@
     animation: blink 1s infinite;
 }
 
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
 /* Контейнер чата */
 .chat-container {
     display: flex;
     flex-direction: column;
+    border-radius: 16px;
 }
 
 /* Блок с сообщениями */
 .chat-messages-container {
     flex-grow: 1;
-    background-color: #1e1e1e;
     border-radius: 16px;
-    padding: 24px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
-    /* Стили скроллбара для Firefox */
-    scrollbar-width: thin;
-    scrollbar-color: #00bfff #1e1e1e;
-    filter: brightness(90%);
-}
-
-
-/* Кнопка прокрутки вниз */
-.scroll-button {
-    position: fixed;
-    bottom: 20vh;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 36px;
-    height: 36px;
-    background: linear-gradient(135deg, #4a90e2, #007aff);
-    color: white;
-    font-size: 18px;
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    opacity: 0.75;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    cursor: pointer;
-}
-
-.scroll-button:hover {
-    opacity: 1;
-    transform: translateX(-50%) scale(1.1);
+    /* скрыть скролл */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }

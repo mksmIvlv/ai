@@ -1,5 +1,5 @@
-import { getAsync } from "../../../services/rest/getAsync.js";
-import geminiUrlEnums from "../../../enums/gemini/geminiUrlEnums.js";
+import { getAsync } from '../../../services/rest/getAsync';
+import geminiUrlEnums from '../../../enums/gemini/geminiUrlEnums';
 
 export async function sendTextMessage(message) {
     const query =
